@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>Kollektor.js Demo App</title>
+
+  <!-- CSS  -->
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <script src="dist/kollektor.js"></script>
+    <script>
+    var demoKollektor = _kollektor.register({
+    isDebug: true,
+    privacy: {
+      masking: true,
+      limit: 5,
+      excludedSelectors: []
+    },
+    consumers: [
+        {
+            name: "Demo consumer",
+            map: {
+              event_category: 'collectedProperties.action',
+              event_label: 'collectedProperties.label',
+              id: 'collectedProperties.identifier'
+            },
+            handler: function(eventName, data) {
+                console.log("Demo consumer callback");
+            },
+            events: "all"
+        }
+      ]
+    });
+    demoKollektor.track();
+    </script>
+</head>
+
+<body id="body-id">
+    <a id="test-regular-link-123456" href="#test1">Test text link</a>
+    <button id="test-button" onclick="console.log(this);">Test button</button>
+    <button id="this-will-be-masked-123456" onclick="console.log(this);">id will be masked</button>
+    <ul>
+      <li class="menu-item">
+        <a href="#">li menu item</a>
+      </li>
+    </ul>
+    <ul>
+      <li class="menu-item" id="li-id" style="display: inline-block">
+        <a href="#">li menu item where li has id</a>
+      </li>
+    </ul>
+</body>
+
+</html>

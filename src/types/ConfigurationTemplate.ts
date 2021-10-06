@@ -1,0 +1,1 @@
+export type ConfigurationTemplate = "custom" | "default" | "bootstrap4";

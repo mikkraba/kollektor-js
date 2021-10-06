@@ -1,0 +1,8 @@
+# No need to lint node modules
+node_modules
+
+# No need to lint build output
+dist
+src/polyfills
+
+webpack.config.js
